@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="" src="/crab.svg" width="200">
+  <img alt="" src="https://kocisov.github.io/crab/crab.svg" width="200">
 </p>
 
 <p align="center">

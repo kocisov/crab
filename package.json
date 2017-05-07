@@ -1,6 +1,6 @@
 {
   "name": "@kocisov/crab",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.0-beta.2",
   "description": "JavaScript library for building user interfaces with Custom Elements, Shadow DOM and Familiar React API",
   "main": "index.js",
   "repository": {
