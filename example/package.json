@@ -1,0 +1,24 @@
+{
+  "name": "crab-webpack-example",
+  "version": "1.0.0",
+  "description": "Crab Example with Webpack",
+  "main": "index.js",
+  "repository": "kocisov/crab",
+  "author": "kocisov",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --config webpack.config.dev.js --inline"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babili-webpack-plugin": "^0.0.11",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "@kocisov/crab": "0.2.0-beta.1"
+  }
+}

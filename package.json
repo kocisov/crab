@@ -1,0 +1,31 @@
+{
+  "name": "@kocisov/crab",
+  "version": "0.2.0-beta.1",
+  "description": "JavaScript library for building user interfaces with Custom Elements, Shadow DOM and Familiar React API",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kocisov/crab.git"
+  },
+  "author": "kocisov <kocis.34@gmail.com>",
+  "scripts": {
+    "prepublish": "yarn prettier && yarn compile",
+    "prettier": "prettier --write src/**/*.js --single-quote",
+    "compile": "rollup -c"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-uglify": "^1.0.2",
+    "uglify-js-harmony": "^2.7.5"
+  },
+  "bugs": {
+    "url": "https://github.com/kocisov/crab/issues"
+  },
+  "homepage": "https://github.com/kocisov/crab#readme"
+}
