@@ -6,9 +6,9 @@
   JavaScript library for building user interfaces with Custom Elements, Shadow DOM and React like API.
 </p>
 
-> Crab's size is **5kB** gzipped with polyfills included. Without polyfills size is only about **1kB** gzipped.
+[![npm](https://img.shields.io/npm/v/@kocisov/crab.svg)](http://npmjs.com/@kocisov/crab) [![Code Climate](https://codeclimate.com/github/Kocisov/crab/badges/gpa.svg)](https://codeclimate.com/github/Kocisov/crab)
 
-![http://npmjs.com/@kocisov/crab](https://img.shields.io/npm/v/@kocisov/crab.svg)
+> Crab's size is **5kB** gzipped with polyfills included. Without polyfills size is only about **1kB** gzipped.
 
 ### Installation
 **Crab** is compiling from ES2015+ to ES5 ready because it comes with native-shim (and also custom-elements) polyfill included.
@@ -51,10 +51,3 @@ Work in progress at [docs](https://kocisov.gitbooks.io/crab/content/).
 
 ### Example
 Refer to [example folder](https://github.com/kocisov/crab/tree/master/example) or [example.md](https://github.com/kocisov/crab/tree/master/example.md)
-
-### API
-`Component` crab's **essential** ES2015 class. Every class which is a crab's component **must extend this class**.
-
-`defineComponents` define all components that are used. **{ 'name-component': ComponentClass }**
-
-`render` Pretty much just renders some markup into specified element.
