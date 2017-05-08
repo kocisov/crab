@@ -10,6 +10,46 @@
 
 > Crab's size is **5kB** gzipped with polyfills included. Without polyfills size is only about **1kB** gzipped.
 
+### Example
+Refer to [examples folder](https://github.com/kocisov/crab/tree/master/examples)
+
+```js
+import { Component, defineComponents, render } from '@kocisov/crab'
+
+export default class Header extends Component {
+  static get is() {
+    return 'header-component'
+  }
+
+  state = {
+    name: 'Koci'
+  }
+
+  changeState() {
+    this.setState({
+      name: 'New name'
+    })
+  }
+
+  render() {
+    return `
+      <div class="flex-right">
+        Hello ${this.state.name}
+      </li>
+    `
+  }
+}
+
+defineComponents([
+  Header,
+  SmallButon
+], { crabug: true })
+
+render(`
+  <header-component onClick="changeState"></header-component>
+`, document.getElementById('root'))
+```
+
 ### Installation
 **Crab** is compiling from ES2015+ to ES5 ready because it comes with native-shim (and also custom-elements) polyfill included.
 
@@ -29,12 +69,12 @@ import { Component, defineComponents, render } from '@kocisov/crab'
 
 // if you are not
 // include umd bundle @kocisov/crab/browser
-const { Component, defineComponents, render } = crab // window.crab
+const { Component, defineComponents, render } = Crab // window.crab
 
 // ...
 
 render(`
-  <h2>Hello</h2>
+  <view-layout></view-layout>
 `, document.getElementById('root'))
 ```
 
@@ -55,6 +95,3 @@ Or you can use [babili](https://github.com/babel/babili) and its [babili-webpack
 
 ### Docs
 Work in progress at [docs](https://kocisov.gitbooks.io/crab/content/).
-
-### Examples
-Refer to [examples folder](https://github.com/kocisov/crab/tree/master/examples) or [example.md](https://github.com/kocisov/crab/tree/master/example.md)

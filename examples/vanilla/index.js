@@ -1,4 +1,5 @@
-const { defineComponents, render } = Crab
+const defineComponents = Crab.defineComponents
+const render = Crab.render
 
 class View extends Crab.Component {
   static get is() {
