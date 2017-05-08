@@ -24,7 +24,13 @@ npm install --save @kocisov/crab
 
 ##### Include crab into your code
 ```js
+// if you are compiling with webpack and babel
 import { Component, defineComponents, render } from '@kocisov/crab'
+
+// if you are not
+// include umd bundle @kocisov/crab/browser
+const { Component, defineComponents, render } = crab // window.crab
+
 // ...
 
 render(`
@@ -32,7 +38,8 @@ render(`
 `, document.getElementById('root'))
 ```
 
-If you are using Uglify for minification, Crab requires harmony version of Uglify instead of default to work properly.
+#### Webpack
+If you are using Uglify for minification, Crab requires harmony version of Uglify to work properly.
 
 You can add it to your project with this command.
 
@@ -49,5 +56,5 @@ Or you can use [babili](https://github.com/babel/babili) and its [babili-webpack
 ### Docs
 Work in progress at [docs](https://kocisov.gitbooks.io/crab/content/).
 
-### Example
-Refer to [example folder](https://github.com/kocisov/crab/tree/master/example) or [example.md](https://github.com/kocisov/crab/tree/master/example.md)
+### Examples
+Refer to [examples folder](https://github.com/kocisov/crab/tree/master/examples) or [example.md](https://github.com/kocisov/crab/tree/master/example.md)

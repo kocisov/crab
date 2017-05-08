@@ -3,24 +3,21 @@ export default class Component extends HTMLElement {
     super();
 
     this.state = {};
-
     this.root = this.attachShadow({ mode: 'open' });
 
-    if (this.hasAttribute('click')) {
+    if (this.hasAttribute('onClick')) {
       this.addEventListener('click', this._handleClick);
     }
   }
 
   _handleClick() {
-    const attr = this.getAttribute('click');
+    const attr = this.getAttribute('onClick');
 
     if (attr === '') {
       if (this.handleClick && typeof this.handleClick === 'function') {
         this.handleClick();
       }
-    }
-
-    if (this[attr] && typeof this[attr] === 'function') {
+    } else if (this[attr] && typeof this[attr] === 'function') {
       this[attr]();
     }
   }
@@ -28,19 +25,42 @@ export default class Component extends HTMLElement {
   connectedCallback() {
     const root = this.root;
     root.innerHTML = this.render();
+
+    if (
+      this.componentDidMount && typeof this.componentDidMount === 'function'
+    ) {
+      this.componentDidMount();
+    }
+  }
+
+  sa(name, value) {
+    this.setAttribute(name, value);
+    this.attributeChangedCallback();
   }
 
   disconnectedCallback() {
-    if (this.hasAttribute('click')) {
-      this.removeEventListener('click', this._handleClick);
+    this.removeEventListener('click', this._handleClick);
+
+    if (
+      this.componentDidUnmount && typeof this.componentDidUnmount === 'function'
+    ) {
+      this.componentDidUnmount();
     }
   }
 
   attributeChangedCallback(attrName, oldValue, newValue) {
-    if (process.env.NODE_ENV !== 'production') {
+    const oldState = {
+      ...this.state
+    };
+
+    const oldAttributes = {
+      ...this.attributes
+    };
+
+    if (window.crabug) {
       console.log(
-        '%cState changed:',
-        'color: #2ecc71; font-weight: bold',
+        '%cAttribute changed:',
+        'color: #cc343d; font-weight: bold',
         'Name:',
         attrName,
         'Old value:',
@@ -50,16 +70,20 @@ export default class Component extends HTMLElement {
       );
     }
 
-    this.rerender();
+    this.shouldRender(oldState, oldAttributes);
   }
 
   setState(obj) {
-    if (process.env.NODE_ENV !== 'production') {
+    const oldState = {
+      ...this.state
+    };
+
+    if (window.crabug) {
       const newObj = typeof obj === 'function' ? 'function passed' : obj;
 
       console.log(
         '%cState changed:',
-        'color: #cc343d; font-weight: bold',
+        'color: #2eec71; font-weight: bold',
         newObj
       );
     }
@@ -70,10 +94,42 @@ export default class Component extends HTMLElement {
       this.state = Object.assign(this.state, obj);
     }
 
-    this.rerender();
+    this.shouldRender(oldState);
   }
 
-  rerender() {
+  shouldRender(oldState, oldAttributes) {
+    if (
+      this.shouldComponentUpdate &&
+      typeof this.shouldComponentUpdate === 'function'
+    ) {
+      const res = this.shouldComponentUpdate(
+        oldState,
+        oldAttributes
+          ? oldAttributes
+          : {
+              ...this.attributes
+            }
+      );
+
+      if (res) {
+        return this.reRender();
+      }
+
+      return false;
+    }
+
+    this.reRender();
+  }
+
+  forceRender() {
+    if (window.crabug) {
+      console.log('reRender() was forced');
+    }
+
+    this.reRender();
+  }
+
+  reRender() {
     const root = this.root;
     root.innerHTML = this.render();
   }

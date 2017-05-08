@@ -3,8 +3,7 @@ import uglify from 'rollup-plugin-uglify';
 import { minify } from 'uglify-js-harmony';
 
 export default {
-  moduleName: 'crab',
-  format: 'umd',
+  format: 'cjs',
   entry: './src/index.js',
   dest: './index.js',
   plugins: [

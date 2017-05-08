@@ -1,6 +1,6 @@
 {
   "name": "@kocisov/crab",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "description": "JavaScript library for building user interfaces with Custom Elements, Shadow DOM and Familiar React API",
   "main": "index.js",
   "repository": {
@@ -9,9 +9,11 @@
   },
   "author": "kocisov <kocis.34@gmail.com>",
   "scripts": {
+    "compile-browser": "rollup --config rollup.config.browser.js",
+    "compile-wp": "rollup -c",
+    "compile": "yarn compile-wp && yarn compile-browser",
     "prepublish": "yarn prettier && yarn compile",
-    "prettier": "prettier --write src/**/*.js --single-quote",
-    "compile": "rollup -c"
+    "prettier": "prettier --write src/**/*.js --single-quote"
   },
   "license": "MIT",
   "devDependencies": {

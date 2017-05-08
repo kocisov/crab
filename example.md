@@ -1,4 +1,4 @@
-### Example
+## Example
 
 ##### index.js
 ```js
@@ -6,7 +6,10 @@ import { Component, defineComponents, render } from '@kocisov/crab'
 import SmallButon from './small-button'
 
 export default class Header extends Component {
-  // constructor() (stage-0; transform)
+  static get is() {
+    return 'header-component'
+  }
+
   state = {
     name: 'Koci'
   }
@@ -55,21 +58,23 @@ export default class Header extends Component {
 
 /*
  * we define each of our components here
- * like this { HTMLMarkupName: componentClass }
  */
-defineComponents({
-  'header-component': Header,
-  'small-button': SmallButon,
+defineComponents([
+  Header,
+  SmallButon
+], {
+  // debug, logging state/attribute changes
+  crabug: true
 })
 
 /*
  * render content into element
  */
 render(`
-  <header-component click="handleClick"></header-component>
+  <header-component onClick></header-component>
   <div>
     Normal div
-    <small-button click="changeColor"></small-button>
+    <small-button onClick="changeColor"></small-button>
   </div>
 `, document.getElementById('root'))
 ```
@@ -79,6 +84,10 @@ render(`
 import { Component, defineComponents, render } from '@kocisov/crab'
 
 export default class SmallButon extends Component {
+  static get is() {
+    return 'small-button'
+  }
+
   state = {
     color: 'red'
   }
@@ -107,7 +116,7 @@ export default class SmallButon extends Component {
 
 
 ##### index.html
-> Defined Custom Elements in Markup are replaced
+> Defined Custom Elements in Markup are replaced, but you probably want to just render in JavaScript with Crab.render()
 
 ```html
 <!doctype html>
@@ -122,12 +131,12 @@ export default class SmallButon extends Component {
   -->
   <div id="root">
     <!--
-      click attribute is like onClick
-      (probably will be renamed in v1)
-      we pass Component's function name and it's
-      automatically binded with this
+      click attribute, binded to this.handleClick as default
+
+      we can also pass Component's function name and it's
+      automatically binded with "this.[name]"
     -->
-    <header-component click="handleClick"></header-component>
+    <header-component onClick></header-component>
   </div>
   <script src="index.js"></script>
 </body>

@@ -6,14 +6,22 @@ import Content from './components/Content'
 import Header from './components/Header'
 import Increment from './components/Increment'
 
-defineComponents({
-  'content-component': Content,
-  'header-component': Header,
-  'increment-component': Increment
+defineComponents([
+  Header,
+  Content,
+  Increment
+], {
+  // debug, but crab 🦀
+  crabug: process.env.NODE_ENV === 'production' ? false : true
 })
 
 render(`
-  <style>body {margin:0; font-family:sans-serif}</style>
-  <header-component click></header-component>
+  <header-component onClick></header-component>
   <content-component></content-component>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+  </style>
 `, document.getElementById('root'))

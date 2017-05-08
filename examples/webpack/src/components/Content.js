@@ -1,7 +1,9 @@
 import { Component } from '@kocisov/crab'
 
-export default class Header extends Component {
-  state = {}
+export default class Content extends Component {
+  static get is() {
+    return 'content-component'
+  }
 
   render() {
     return `
@@ -9,8 +11,8 @@ export default class Header extends Component {
       <p>How are you doing?</p>
       <p>And how is Crab? 🤔</p>
       <div class="increment-components">
-        <increment-component click="handleClick"></increment-component>
-        <increment-component click="handleClick"></increment-component>
+        <increment-component onClick></increment-component>
+        <increment-component onClick></increment-component>
       </div>
       <style>
         :host {

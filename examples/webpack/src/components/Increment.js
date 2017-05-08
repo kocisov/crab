@@ -1,6 +1,10 @@
 import { Component } from '@kocisov/crab'
 
-export default class Header extends Component {
+export default class Increment extends Component {
+  static get is() {
+    return 'increment-component'
+  }
+
   state = {
     value: 1
   }

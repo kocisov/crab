@@ -1,6 +1,10 @@
 import { Component } from '@kocisov/crab'
 
 export default class Header extends Component {
+  static get is() {
+    return 'header-component'
+  }
+
   state = {
     name: 'Koci'
   }
