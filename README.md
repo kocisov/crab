@@ -51,7 +51,8 @@ render(`
 ```
 
 ### Installation
-**Crab** is compiling from ES2015+ to ES5 ready because it comes with native-shim (and also custom-elements) polyfill included.
+
+This version of **Crab** is compiling from ES2015+ to ES5 ready even without native-shim!
 
 ##### Install crab with package manager
 ```bash
@@ -68,8 +69,8 @@ npm install --save @kocisov/crab
 import { Component, defineComponents, render } from '@kocisov/crab'
 
 // if you are not
-// include umd bundle @kocisov/crab/browser
-const { Component, defineComponents, render } = Crab // window.crab
+// you can use umd bundle @kocisov/dist/crab.umd.js
+const { Component, defineComponents, render } = Crab // window.Crab
 
 // ...
 

@@ -1,36 +1,39 @@
-const defineComponents = Crab.defineComponents
-const render = Crab.render
+// use:
+// @kocisov/crab with transpiler
+// crab.umd.js without transpiler
+// crab.esm.js with chrome modules
+import { Component, defineComponents, render } from '@kocisov/crab'
 
-class View extends Crab.Component {
+const rootEl = document.getElementById('root')
+
+class View extends Component {
   static get is() {
     return 'view-layout'
   }
 
   static get observedAttributes() {
-    return [
-      'test'
-    ]
+    return ['test']
   }
 
   constructor() {
     super()
 
     this.state = {
-      value: 1
+      value: 1,
     }
 
-    console.log({a: this})
+    console.log({ viewComponent: this })
   }
 
   handleClick() {
     console.log('onClick is working 🎉')
-    this.setAttribute('test', Math.floor(Math.random() * 100))
+    this.setProp('test', Math.floor(Math.random() * 100))
   }
 
   componentDidMount() {
     console.log('%cSuccessfully mounted View 🎉', 'font-weight: bold')
     this.setState({
-      xd: true
+      something: true,
     })
   }
 
@@ -48,7 +51,7 @@ class View extends Crab.Component {
   }
 }
 
-class Header extends Crab.Component {
+class Header extends Component {
   static get is() {
     return 'header-component'
   }
@@ -68,7 +71,7 @@ class Header extends Crab.Component {
   }
 }
 
-class Content extends Crab.Component {
+class Content extends Component {
   static get is() {
     return 'content-component'
   }
@@ -85,12 +88,16 @@ class Content extends Crab.Component {
   }
 }
 
-defineComponents([
-  View,
-  Header,
-  Content
-], { crabug: true })
+defineComponents([View, Header, Content], { crabug: true })
 
-render(`
-  <view-layout onClick></view-layout>
-`, document.getElementById('root'))
+render(
+  // markup
+  `<view-layout onClick></view-layout>`,
+  // global style
+  `body {
+    margin: 0;
+    font-family: sans-serif;
+  }`,
+  // rendering element
+  rootEl
+)

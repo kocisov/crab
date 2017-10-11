@@ -1,65 +1,66 @@
 export default class Component extends HTMLElement {
   constructor() {
-    super();
+    super()
 
-    this.state = {};
-    this.root = this.attachShadow({ mode: 'open' });
+    this.state = {}
+    this.root = this.attachShadow({ mode: 'open' })
 
     if (this.hasAttribute('onClick')) {
-      this.addEventListener('click', this._handleClick);
+      this.addEventListener('click', this._handleClick)
     }
   }
 
   _handleClick() {
-    const attr = this.getAttribute('onClick');
+    const attr = this.getAttribute('onClick')
 
     if (attr === '') {
       if (this.handleClick && typeof this.handleClick === 'function') {
-        this.handleClick();
+        this.handleClick()
       }
     } else if (this[attr] && typeof this[attr] === 'function') {
-      this[attr]();
+      this[attr]()
     }
   }
 
   connectedCallback() {
-    const root = this.root;
-    root.innerHTML = this.render();
+    const root = this.root
+    root.innerHTML = this.render()
 
     if (
-      this.componentDidMount && typeof this.componentDidMount === 'function'
+      this.componentDidMount &&
+      typeof this.componentDidMount === 'function'
     ) {
-      this.componentDidMount();
+      this.componentDidMount()
     }
   }
 
-  sa(name, value) {
-    this.setAttribute(name, value);
-    this.attributeChangedCallback();
+  setProp(name, value) {
+    this.setAttribute(name, value)
   }
 
   disconnectedCallback() {
-    this.removeEventListener('click', this._handleClick);
+    this.removeEventListener('click', this._handleClick)
 
     if (
-      this.componentDidUnmount && typeof this.componentDidUnmount === 'function'
+      this.componentDidUnmount &&
+      typeof this.componentDidUnmount === 'function'
     ) {
-      this.componentDidUnmount();
+      this.componentDidUnmount()
     }
   }
 
   attributeChangedCallback(attrName, oldValue, newValue) {
     const oldState = {
-      ...this.state
-    };
+      ...this.state,
+    }
 
     const oldAttributes = {
-      ...this.attributes
-    };
+      ...this.attributes,
+    }
 
     if (window.crabug) {
       console.log(
-        '%cAttribute changed:',
+        '%cAttribute/Prop changed:',
         'color: #cc343d; font-weight: bold',
         'Name:',
         attrName,
@@ -67,34 +68,34 @@ export default class Component extends HTMLElement {
         oldValue,
         'New value:',
         newValue
-      );
+      )
     }
 
-    this.shouldRender(oldState, oldAttributes);
+    this.shouldRender(oldState, oldAttributes)
   }
 
   setState(obj) {
     const oldState = {
-      ...this.state
-    };
+      ...this.state,
+    }
 
     if (window.crabug) {
-      const newObj = typeof obj === 'function' ? 'function passed' : obj;
+      const newObj = typeof obj === 'function' ? 'function passed' : obj
 
       console.log(
         '%cState changed:',
         'color: #2eec71; font-weight: bold',
         newObj
-      );
+      )
     }
 
     if (typeof obj === 'function') {
-      this.state = Object.assign(this.state, obj(this.state));
+      this.state = Object.assign(this.state, obj(this.state))
     } else {
-      this.state = Object.assign(this.state, obj);
+      this.state = Object.assign(this.state, obj)
     }
 
-    this.shouldRender(oldState);
+    this.shouldRender(oldState)
   }
 
   shouldRender(oldState, oldAttributes) {
@@ -107,30 +108,30 @@ export default class Component extends HTMLElement {
         oldAttributes
           ? oldAttributes
           : {
-              ...this.attributes
+              ...this.attributes,
             }
-      );
+      )
 
       if (res) {
-        return this.reRender();
+        return this.reRender()
       }
 
-      return false;
+      return false
     }
 
-    this.reRender();
+    this.reRender()
   }
 
   forceRender() {
     if (window.crabug) {
-      console.log('reRender() was forced');
+      console.log('reRender() was forced')
     }
 
-    this.reRender();
+    this.reRender()
   }
 
   reRender() {
-    const root = this.root;
-    root.innerHTML = this.render();
+    const root = this.root
+    root.innerHTML = this.render()
   }
 }

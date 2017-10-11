@@ -1,6 +1,5 @@
-// polyfills
-import '../polyfills/custom-elements';
-import '../polyfills/native-shim';
+// polyfill for firefox
+import './polyfills/webcomponents'
 
-export Component from './component';
-export { defineComponents, render } from './render';
+export { default as Component } from './component'
+export { defineComponents, render } from './render'

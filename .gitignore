@@ -40,3 +40,5 @@ jspm_packages
 tst
 
 *.gz
+
+.DS_Store
