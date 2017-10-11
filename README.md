@@ -8,8 +8,6 @@
 
 [![npm](https://img.shields.io/npm/v/@kocisov/crab.svg)](http://npmjs.com/@kocisov/crab) [![Code Climate](https://codeclimate.com/github/Kocisov/crab/badges/gpa.svg)](https://codeclimate.com/github/Kocisov/crab)
 
-> Crab's size is **5kB** gzipped with polyfills included. Without polyfills size is only about **1kB** gzipped.
-
 ### Example
 Refer to [examples folder](https://github.com/kocisov/crab/tree/master/examples)
 

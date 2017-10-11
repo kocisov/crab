@@ -28,6 +28,7 @@
     "url": "git+https://github.com/kocisov/crab.git"
   },
   "scripts": {
+    "prepublish": "npm run compile",
     "compile": "rollup -c"
   }
 }
