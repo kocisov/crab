@@ -8,8 +8,10 @@
 
 [![npm](https://img.shields.io/npm/v/@kocisov/crab.svg)](http://npmjs.com/@kocisov/crab) [![Code Climate](https://codeclimate.com/github/Kocisov/crab/badges/gpa.svg)](https://codeclimate.com/github/Kocisov/crab)
 
+> Crab's size is only about **2kB** gzipped.
+
 ### Example
-Refer to [examples folder](https://github.com/kocisov/crab/tree/master/examples)
+Simple example is available at [example folder](https://github.com/kocisov/crab/tree/master/example)
 
 ```js
 import { Component, defineComponents, render } from '@kocisov/crab'
