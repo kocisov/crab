@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "esModuleInterop": true,
+    "lib": ["es2015", "es6", "dom"],
+    "noImplicitAny": true,
+    "outDir": "lib",
+    "strict": true,
+    "target": "es2015"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "lib"]
+}

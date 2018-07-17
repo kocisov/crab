@@ -1,34 +1,37 @@
 {
   "name": "@kocisov/crab",
-  "description":
-    "JavaScript library for building user interfaces with Custom Elements, Shadow DOM and React like API",
-  "version": "0.2.0",
+  "description": "JavaScript library for building user interfaces with Custom Elements, Shadow DOM and React like API.",
+  "version": "0.3.1",
   "author": "kocisov <kocis.34@gmail.com>",
   "bugs": {
     "url": "https://github.com/kocisov/crab/issues"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-plugin-transform-custom-element-classes": "^0.1.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-stage-0": "^6.24.1",
-    "rollup": "^0.50.0",
-    "rollup-plugin-babel": "^3.0.2",
-    "rollup-plugin-commonjs": "^8.2.1",
-    "rollup-plugin-node-resolve": "^3.0.0"
+    "@types/lodash-es": "^4.17.0",
+    "rollup": "^0.62.0",
+    "rollup-plugin-typescript2": "^0.15.1",
+    "typescript": "^2.9.2"
   },
   "homepage": "https://github.com/kocisov/crab#readme",
-  "keywords": ["Crab", "CustomElements", "ShadowDOM", "UI"],
+  "keywords": [
+    "Crab",
+    "CustomElements",
+    "ShadowDOM",
+    "UI"
+  ],
   "license": "MIT",
-  "browser": "dist/crab.umd.js",
-  "main": "dist/crab.cjs.js",
-  "module": "dist/crab.esm.js",
+  "main": "lib/index.js",
+  "module": "lib/index.es.js",
+  "peerDependencies": {
+    "lodash-es": "^4.17.10"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kocisov/crab.git"
   },
   "scripts": {
-    "prepublish": "npm run compile",
-    "compile": "rollup -c"
-  }
+    "build": "rollup -c",
+    "watch": "rollup -cw"
+  },
+  "types": "lib/index.d.ts"
 }

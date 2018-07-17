@@ -8,53 +8,59 @@
 
 [![npm](https://img.shields.io/npm/v/@kocisov/crab.svg)](http://npmjs.com/@kocisov/crab) [![Code Climate](https://codeclimate.com/github/Kocisov/crab/badges/gpa.svg)](https://codeclimate.com/github/Kocisov/crab)
 
-> Crab's size is only about **2kB** gzipped.
+> This version of Crab was written in TypeScript to include Types for your development
 
-### Example
-Simple example is available at [example folder](https://github.com/kocisov/crab/tree/master/example)
+### How does it look
 
 ```js
 import { Component, defineComponents, render } from '@kocisov/crab'
 
 export default class Header extends Component {
-  static get is() {
+  // or Polymer like => static get is()
+  static get componentName() {
     return 'header-component'
   }
 
   state = {
-    name: 'Koci'
+    id: 'Some string...',
   }
 
   changeState() {
     this.setState({
-      name: 'New name'
+      id: uuid.v4(),
     })
   }
 
   render() {
     return `
       <div class="flex-right">
-        Hello ${this.state.name}
+        Hello ${this.state.id}
       </li>
     `
   }
 }
 
-defineComponents([
-  Header,
-  SmallButon
-], { crabug: true })
+defineComponents([Header, SmallButon], { crabug: true })
 
-render(`
-  <header-component onClick="changeState"></header-component>
-`, document.getElementById('root'))
+render(
+  `
+    <header-component onClick="changeState"></header-component>
+  `,
+  `
+    body {
+      margin: 0;
+    }
+  `,
+  document.getElementById('root'),
+)
 ```
 
 ### Installation
 
-This version of **Crab** is compiling from ES2015+ to ES5 ready even without native-shim!
+This version of **Crab** is compiling from ES2015+ to ES5 ready even without native-shim.
 
 ##### Install crab with package manager
+
 ```bash
 # yarn
 yarn add @kocisov/crab
@@ -64,35 +70,21 @@ npm install --save @kocisov/crab
 ```
 
 ##### Include crab into your code
-```js
-// if you are compiling with webpack and babel
-import { Component, defineComponents, render } from '@kocisov/crab'
 
-// if you are not
-// you can use umd bundle @kocisov/dist/crab.umd.js
-const { Component, defineComponents, render } = Crab // window.Crab
+```js
+// webpack with babel
+import { Component, defineComponents, render } from '@kocisov/crab'
 
 // ...
 
-render(`
-  <view-layout></view-layout>
-`, document.getElementById('root'))
+render(
+  `
+    <view-layout></view-layout>
+  `,
+  document.getElementById('root'),
+)
 ```
-
-#### Webpack
-If you are using Uglify for minification, Crab requires harmony version of Uglify to work properly.
-
-You can add it to your project with this command.
-
-```bash
-# yarn
-yarn add --dev git://github.com/mishoo/UglifyJS2#harmony
-
-# npm
-npm install --save-dev git://github.com/mishoo/UglifyJS2#harmony
-```
-
-Or you can use [babili](https://github.com/babel/babili) and its [babili-webpack-plugin](https://github.com/webpack-contrib/babili-webpack-plugin)
 
 ### Docs
+
 Work in progress at [docs](https://kocisov.gitbooks.io/crab/content/).
